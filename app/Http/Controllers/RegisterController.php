@@ -65,7 +65,7 @@ class RegisterController extends Controller
             'firstName' => $request->firstName,
             'middleName' => $request->middleName,
             'lastName' => $request->lastName,
-            'userName' => $request->userName,
+            'username' => $request->username,
             'password' => $pass,
             'gitName' => $request->githubUserName,
             'email' => $request->email,
@@ -77,12 +77,12 @@ class RegisterController extends Controller
             'communication' => $communication,
             'contactType' => $contactType,
             'contact' => $request->contactNumber,
-            'resState' => $request->residenceStateName,
-            'resCity' => $request->residenceCityName,
-            'resZip' => $request->residenceZip,
-            'ofcState' => $request->officeStateName,
-            'ofcCity' => $request->officeCityName,
-            'ofcZip' => $request->officeZip,
+            'residenceState' => $request->residenceStateName,
+            'residenceCity' => $request->residenceCityName,
+            'residenceZip' => $request->residenceZip,
+            'officeState' => $request->officeStateName,
+            'officeCity' => $request->officeCityName,
+            'officeZip' => $request->officeZip,
             'photoLocation' => $photoLocation);
 
 

@@ -28,7 +28,7 @@ class StoreBlogPostRequest extends Request
             'firstName' => 'required|max:255|alpha',
             'middleName' => 'max:255|alpha',
             'lastName' => 'required|max:255|alpha',
-            'userName' => 'required|max:255',
+            'username' => 'required|max:255',
             'githubUserName' => 'alpha|required',
             'email' => 'email',
             'dob' => 'required',

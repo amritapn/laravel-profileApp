@@ -36,7 +36,6 @@ $(document).ready(function() {
                         html += "<p>Last updated: " + time + "</p>";
                         gitObj.append(html);
                         $('#my_image').attr('src',"https://avatars.githubusercontent.com/u/23655160?v=3");
-                        $('#myModal1').modal;
                     }
                 });
                 return false;

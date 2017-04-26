@@ -23,8 +23,7 @@ $(function() {
                 required: true,
                 alpha:true
             },
-            middleName : "alpha",
-            userName : {
+            username : {
                 required: true,
                 alpha:true
             },
@@ -70,15 +69,14 @@ $(function() {
         // Specify validation error messages
         messages: {
             firstName: {
-                required: "Please enter your firstname",
+                required: "Please enter your First Name",
                 alpha: "First Name should only alphabet"
             },
             lastName: {
-                required: "Please enter your lastname",
-                 alpha: "Last Name should only alphabet"
+                required: "Please enter your Last Name",
+                alpha: "Last Name should only alphabet"
              },
-            middleName: "Please enter only alphabet",
-            userName: {
+            username: {
                 required: "Please enter your Username",
                 alpha: "Last Name should only alphabet"
             },
@@ -115,11 +113,10 @@ $(function() {
         // in the "action" attribute of the form when valid
 
         submitHandler: function() {
-            if($("#signUp").length >0) {
-            } else {
+            if($("#signUp").length <= 0) {
                 event.preventDefault();
                 var id = $("#hidden").val();
-                    update_row(id)
+                update_row(id)
             }
         }
     });

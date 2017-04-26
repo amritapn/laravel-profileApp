@@ -18,21 +18,21 @@ class GetUserInfo
      * Get offers related to tag or category
      *
      * @param integer
-     * @param $id
+     * @param $empId
      *
      * @return array
      */
-    public static function getDetails($id)
+    public static function getDetails($empId)
     {
             return Employee::select('employee.PK_ID', 'employee.prefix', 'employee.firstName', 'employee.middleName',
-                'employee.lastName', 'employee.userName', 'employee.email', 'employee.githubUserName',
+                'employee.lastName', 'employee.username', 'employee.email', 'employee.githubUserName',
                 'employee.dateOfBirth', 'employee.gender', 'employee.maritalStatus',
                 DB::raw('GROUP_CONCAT(address.addressType, ": ", CONCAT_WS(" ", address.zip, city.name, state.stateName)) AS ADDRESS'),
                 'company.name AS companyName',
                 'designation.name',
                 DB::raw('GROUP_CONCAT(DISTINCT communicationType.communicationType) AS communicationType'),
                 DB::raw('GROUP_CONCAT(DISTINCT contacts.contactType) AS contactType'), 'contacts.contactNO')
-                ->where('employee.PK_ID', $id)
+                ->where('employee.PK_ID', $empId)
                 ->join('address', 'employee.PK_ID', '=', 'address.FK_employeeID')
                 ->join('city', 'address.FK_cityId', '=', 'city.PK_ID')
                 ->join('state', 'city.FK_stateID', '=', 'state.PK_ID')
@@ -45,11 +45,20 @@ class GetUserInfo
 
     }
 
+    /**
+     * Get offers related to tag or category
+     *
+     * @param array of values
+     * @param $value
+     *
+     * @return array
+     */
+
     public static function updateData($value)
     {
-        $id = $value['PK_ID'];
+        $empId = $value['PK_ID'];
         $fkId = Employee::select('FK_companyID', 'FK_designationID')
-            ->where('PK_ID', '=', $id)
+            ->where('PK_ID', '=', $empId)
             ->first();
 
         // Retrieving the value
@@ -57,12 +66,12 @@ class GetUserInfo
         $designationId = $fkId['FK_designationID'];
 
         //Updating data to the employee table
-        Employee::where('PK_ID', $id)
+        Employee::where('PK_ID', $empId)
             ->update(['prefix' => $value['prefix'],
                 'firstName' => $value['firstName'],
                 'middleName' => $value['middleName'],
                 'lastName' => $value['lastName'],
-                'userName' => $value['userName'],
+                'username' => $value['username'],
                 'githubUserName' => $value['gitName'],
                 'email' => $value['email'],
                 'dateOfBirth' => $value['dob'],
@@ -85,7 +94,7 @@ class GetUserInfo
 
         //Retrieving the communication id
         $typeId = Communication::select('FK_communicationTypeID')
-            ->where('FK_employeeID', '=', $id)
+            ->where('FK_employeeID', '=', $empId)
             ->first();
         $commId = $typeId['FK_communicationTypeID'];
 
@@ -94,14 +103,14 @@ class GetUserInfo
             ->update(['communicationType' => $value['communication'],]);
 
         //Update the contacts table
-        Contacts::where('FK_employeeID', $id)
+        Contacts::where('FK_employeeID', $empId)
             ->update(['contactType' => $value['contactType'],
                 'contactNO' => $value['contact']
             ]);
 
         //Retrieve the employee id from the address field
         $data = Address::select('FK_cityID')
-            ->where('FK_employeeID', '=', $id)
+            ->where('FK_employeeID', '=', $empId)
             ->first();
         $cityId = $data['FK_cityID'];
         $val = City::select('FK_stateID')
@@ -110,50 +119,68 @@ class GetUserInfo
         $stateId = $val['FK_stateID'];
 
         //Update the address table
-        Address::where('FK_employeeID', $id)
-            ->update(['zip' => $value['resZip'],
+        Address::where('FK_employeeID', $empId)
+            ->update(['zip' => $value['residenceZip'],
                 'FK_cityID' => $cityId,
                 'addressType' => 'residential',
             ]);
 
         //Update to the city table
         City::where('PK_ID', $cityId)
-            ->update(['name' => $value['resCity'],
+            ->update(['name' => $value['residenceCity'],
             ]);
 
         //Update the state table
         State::where('PK_ID', $stateId)
-            ->update(['stateName' => $value['resState'],
+            ->update(['stateName' => $value['residenceState'],
             ]);
 
         //Update the officeaddress table
-        Address::where('FK_employeeID', $id)
-            ->update(['zip' => $value['ofcZip'],
+        Address::where('FK_employeeID', $empId)
+            ->update(['zip' => $value['officeZip'],
                 'FK_cityID' => $cityId,
                 'addressType' => 'official',
             ]);
 
         //Update to the officecity table
         City::where('PK_ID', $cityId)
-            ->update(['name' => $value['ofcCity'],
+            ->update(['name' => $value['officeCity'],
             ]);
 
         //Update the officestate table
         State::where('PK_ID', $stateId)
-            ->update(['stateName' => $value['ofcState'],
+            ->update(['stateName' => $value['officeState'],
             ]);
     }
 
-    public static function deletedata($id)
+    /**
+     * Get offers related to tag or category
+     *
+     * @param integer
+     * @param $primiaryId
+     *
+     * @return array
+     */
+
+    public static function deletedata($primiaryId)
     {
-        Employee::destroy($id);
-        return $id;
+        Employee::destroy($primiaryId);
+        return $primiaryId;
     }
 
-    public static function getUsername($id)
+    /**
+     * Get offers related to tag or category
+     *
+     * @param integer
+     * @param $employeeId
+     *
+     * @return githubUserName
+     */
+
+    public static function getUsername($employeeId)
     {
         $name = Employee::select('githubUserName')
-            ->where('PK_ID', '=', $id)
+            ->where('PK_ID', '=', $employeeId)
             ->first();
         return $name['githubUserName'];
     }

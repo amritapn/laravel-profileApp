@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-Route::get('/', function () {
-    return view('greeting');
-});
+
 Route::get('user/{id}',function($id){
 	return $id;
 });
@@ -61,6 +59,8 @@ Route::get('show', 'RegisterController@show');
 
 Route::get('login', 'LoginController@login');
 Route::post('login', 'LoginController@loginProcess');
+Route::get('/', 'LoginController@login');
+
 
 Route::get('dashboard', 'DashboardController@index');
 Route::get('logout', 'DashboardController@logout');

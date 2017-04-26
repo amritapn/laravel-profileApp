@@ -86,13 +86,13 @@
                 <div class="row">
                     <div class="col-md-6"></div>
                     <div class="col-md-6">
-                        {!! Form::label('userName', 'User Name') !!}
+                        {!! Form::label('username', 'User name') !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6"></div>
                     <div class="col-md-5">
-                        {!! Form::text('userName', null,
+                        {!! Form::text('username', null,
                                         array('class' => 'form-control',
                                               'placeholder' => 'User Name',
                                               'id' => 'userName')) !!}

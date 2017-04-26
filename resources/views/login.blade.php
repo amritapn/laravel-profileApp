@@ -13,7 +13,7 @@
             <div class="login-wrap col-lg-4">
                 <div class="form form-group">
                         <h2><u>LogIn</u></h2><br><br>
-                    {!! Form::text('userName', null, array('class' => 'form-control', 'placeholder' => 'User Name')) !!}
+                    {!! Form::text('username', null, array('class' => 'form-control', 'placeholder' => 'Username')) !!}
                         </div>
                         <div class="form-group" >
 

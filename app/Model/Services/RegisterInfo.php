@@ -30,7 +30,7 @@ class RegisterInfo
         $firstName = $value['firstName'];
         $middleName = $value['middleName'];
         $lastName = $value['lastName'];
-        $userName = $value['userName'];
+        $username = $value['username'];
         $password = $value['password'];
         $gitName = $value['gitName'];
         $email = $value['email'];
@@ -42,12 +42,12 @@ class RegisterInfo
         $communication = $value['communication'];
         $contactType = $value['contactType'];
         $contact = $value['contact'];
-        $resState = $value['resState'];
-        $resCity = $value['resCity'];
-        $resZip = $value['resZip'];
-        $ofcState = $value['ofcState'];
-        $ofcCity = $value['ofcState'];
-        $ofcZip = $value['ofcZip'];
+        $residenceState = $value['residenceState'];
+        $residenceCity = $value['residenceCity'];
+        $residenceZip = $value['residenceZip'];
+        $officeState = $value['officeState'];
+        $officeCity = $value['officeState'];
+        $officeZip = $value['officeZip'];
         $photoLocation = $value['photoLocation'];
 
         // Check the company name is present in the company table and insert into company table
@@ -80,7 +80,7 @@ class RegisterInfo
         $emp->firstName = $firstName;
         $emp->middleName = $middleName;
         $emp->lastName = $lastName;
-        $emp->userName = $userName;
+        $emp->userName = $username;
         $emp->password = $password;
         $emp->email = $email;
         $emp->dateOfBirth = $dob;
@@ -95,12 +95,12 @@ class RegisterInfo
 
         //Insert Residential address
         $state = new State;
-        $pkId = State::where('stateName', $resState)->pluck('PK_ID');
+        $pkId = State::where('stateName', $residenceState)->pluck('PK_ID');
 
         if (count($pkId) > 0) {
             $stateId = $pkId[0];
         } else {
-            $state->stateName = $resState;
+            $state->stateName = $residenceState;
             $state->save();
             $stateId = $state->PK_ID;
         }
@@ -111,7 +111,7 @@ class RegisterInfo
         if (count($pkId) > 0) {
             $cityId = $pkId[0];
         } else {
-            $city->name = $resCity;
+            $city->name = $residenceCity;
             $city->FK_stateID = $stateId;
             $city->save();
             $cityId = $city->PK_ID;
@@ -122,17 +122,17 @@ class RegisterInfo
         $address->FK_employeeID = $employeeId;
         $address->FK_cityID = $cityId;
         $address->addressType = 'residential';
-        $address->zip = $resZip;
+        $address->zip = $residenceZip;
         $address->save();
 
         //Insert Official address
         $state = new State;
-        $pkId = State::where('stateName', $ofcState)->pluck('PK_ID');
+        $pkId = State::where('stateName', $officeState)->pluck('PK_ID');
 
         if (count($pkId) > 0) {
             $stateId = $pkId[0];
         } else {
-            $state->stateName = $ofcState;
+            $state->stateName = $officeState;
             $state->save();
             $stateId = $state->PK_ID;
         }
@@ -143,7 +143,7 @@ class RegisterInfo
         if (count($pkId) > 0) {
             $cityId = $pkId[0];
         } else {
-            $city->name = $ofcCity;
+            $city->name = $officeCity;
             $city->FK_stateID = $stateId;
             $city->save();
             $cityId = $city->PK_ID;
@@ -154,7 +154,7 @@ class RegisterInfo
         $address->FK_employeeID = $employeeId;
         $address->FK_cityID = $cityId;
         $address->addressType = 'official';
-        $address->zip = $ofcZip;
+        $address->zip = $officeZip;
         $address->save();
 
         //Insert into communicationType table

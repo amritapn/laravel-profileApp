@@ -26,9 +26,9 @@ class UserController extends Controller
      */
 
     public function view(Request $request){
-        $id = $request->row_id;
-
-       $employee = GetUserInfo::getDetails($id);
+        $employeeId = $request->row_id;
+        //var_dump($employeeId);exit;
+       $employee = GetUserInfo::getDetails($employeeId);
 
         $address = $employee['ADDRESS'];
         $addressValue = explode(",", $address);
@@ -36,7 +36,7 @@ class UserController extends Controller
         $official = $addressValue[1];
         $residentialAddress = explode(":", $residential);
         $residentialAddressType = $residentialAddress[1];
-        $value = explode(" ",  $residentialAddressType());
+        $value = explode(" ",  $residentialAddressType);
         $residentialZip = $value[1];
         $residentialCityName = $value[2];
         $residentialStateName = $value[3];
@@ -51,7 +51,7 @@ class UserController extends Controller
                     'firstName' => $employee['firstName'],
                     'middleName' => $employee['middleName'],
                     'lastName' => $employee['lastName'],
-                    'userName' => $employee['userName'],
+                    'username' => $employee['username'],
                     'gitName' => $employee['githubUserName'],
                     'email' => $employee['email'],
                     'dob' => $employee['dateOfBirth'],
@@ -86,7 +86,7 @@ class UserController extends Controller
             'firstName' => $request->firstName,
             'middleName' => $request->middleName,
             'lastName' => $request->lastName,
-            'userName' => $request->userName,
+            'username' => $request->username,
             'gitName' => $request->githubUserName,
             'email' => $request->email,
             'dob' => $request->dob,
@@ -97,13 +97,12 @@ class UserController extends Controller
             'communication' => $request->communication,
             'contactType' => $request->contactType,
             'contact' => $request->contact,
-            'resState' => $request->residentialState,
-            'resCity' => $request->residentialCity,
-            'resZip' => $request->residentialZip,
-            'ofcState' => $request->officeState,
-            'ofcCity' => $request->officeCity,
-            'ofcZip' => $request->officeZip);
-
+            'residenceState' => $request->residentialState,
+            'residenceCity' => $request->residentialCity,
+            'residenceZip' => $request->residentialZip,
+            'officeState' => $request->officeState,
+            'officeCity' => $request->officeCity,
+            'officeZip' => $request->officeZip);
         GetUserInfo::updateData($value);
 
     }
@@ -115,8 +114,8 @@ class UserController extends Controller
      */
 
     public static function deleterow(Request $request) {
-        $id = $request->row_id;
-        return GetUserInfo::deletedata($id);
+        $empId = $request->row_id;
+        return GetUserInfo::deletedata($empId);
 
     }
 
@@ -127,7 +126,7 @@ class UserController extends Controller
      */
 
     public static function gitdata(Request $request) {
-        $id = $request->empId;
-        return GetUserInfo::getUsername($id);
+        $employeeId = $request->empId;
+        return GetUserInfo::getUsername($employeeId);
     }
 }

@@ -45,7 +45,7 @@ class LoginController extends Controller
         if (Session::has('loggedIn')) {
             return view('dashboard');
         }else {
-            $username = $request->userName;
+            $username = $request->username;
             $password = $request->password;
 
             if (Auth::attempt(array('username' => $username, 'password' => $password))) {

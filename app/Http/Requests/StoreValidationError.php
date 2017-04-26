@@ -28,7 +28,7 @@ class StoreValidationError extends Request
             'firstName' => 'required|max:255|alpha',
             'middleName' => 'max:255|alpha',
             'lastName' => 'required|max:255|alpha',
-            'userName' => 'required|max:255',
+            'username' => 'required|max:255',
             'password' => 'required|min:4',
             'confirmPassword' => 'required|min:4|same:password',
             'githubUserName' => 'alpha',

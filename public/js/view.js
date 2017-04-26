@@ -1,12 +1,6 @@
 $(document).ready(function() {
     $("#user_table").DataTable();
-    $(".view_button").click(function(){
-        var id = $(this).val();
-        edit_row(id);
-    });
-
-
-    $(".edit_button").click(function () {
+    $(".view_button, .edit_button").click(function(){
         var id = $(this).val();
         edit_row(id);
     });
@@ -35,7 +29,7 @@ function edit_row(id){
                 $("#firstName").val(data['firstName']);
                 $("#middleName").val(data['middleName']);
                 $("#lastName").val(data['lastName']);
-                $("#userName").val(data['userName']);
+                $("#username").val(data['username']);
                 $("#email").val(data['email']);
                 $("#dob").val(data['dob']);
                 $("#gender").val(data['gender']);
@@ -82,7 +76,7 @@ function update_row(user_id){
             firstName: $("#firstName").val(),
             middleName: $("#middleName").val(),
             lastName: $("#lastName").val(),
-            userName: $("#userName").val(),
+            username: $("#username").val(),
             email: $("#email").val(),
             dob: $("#dob").val(),
             gender: $("#gender").val(),
@@ -110,8 +104,8 @@ function update_row(user_id){
             $(".firstName").html(message.firstName);
             $(".middleName").html(message.middleName);
             $(".lastName").html(message.lastName);
-            $(".userName").html(message.userName);
-            $(".gitName").html(message.githubUserName);
+            $(".userName").html(message.username);
+            $(".gitname").html(message.githubUserName);
             $(".dob").html(message.dob).show();
             $(".gender").html(message.gender);
             $(".maritalStatus").html(message.maritalStatus);

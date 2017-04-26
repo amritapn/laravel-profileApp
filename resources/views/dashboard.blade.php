@@ -18,7 +18,7 @@
                 <tr>
                     <td>Image</td>
                     <td>Name</td>
-                    <td>User Name</td>
+                    <td>Username</td>
                     <td>Email</td>
                     <td>Gituser Name</td>
                     <td>Date-Of-Birth</td>
@@ -33,9 +33,9 @@
                 <tbody>
                 @foreach($data as $key => $row)
                         <tr id={{$row->PK_ID}} >
-                            <td><img src = "/img/{{$row->photoLocation}}" height = '30px', width = '30px'></td>
+                            <td><img src = "/img/{{$row->photoLocation}}" class="image"></td>
                             <td>{{$row->prefix}}. {{$row->firstName}} {{$row->middleName}} {{$row->lastName}}</td>
-                            <td>{{$row->userName}}</td>
+                            <td>{{$row->username}}</td>
                             <td>{{$row->email}}</td>
                             <td>{{$row->githubUserName}}</td>
                             <td>{{$row->dateOfBirth}}</td>
@@ -99,7 +99,7 @@
                                     <div class="col-md-6">
                                         {!! Form::select('prefix', ['Mr' => 'Mr', 'Mrs' => 'Mrs', 'Miss' => 'Miss'],
                                          null, array('class' => 'form-control', 'id' => 'prefix')) !!}
-                                        <div class="prefix"></div>
+                                        <div class="prefix text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
@@ -115,7 +115,7 @@
                                          array('class' => 'form-control',
                                                 'placeholder' => 'First Name',
                                                 'id' => 'firstName')) !!}
-                                        <div class="firstName"></div>
+                                        <div class="firstName text-danger"></div>
                                     </div>
                                 </div><br>
 
@@ -132,7 +132,7 @@
                                          array('class' => 'form-control',
                                                'placeholder' => 'Middle Name',
                                                'id' => 'middleName')) !!}
-                                        <div class="middleName"></div>
+                                        <div class="middleName text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
@@ -148,23 +148,23 @@
                                            array('class' => 'form-control',
                                                  'placeholder' => 'Last Name',
                                                  'id' => 'lastName')) !!}
-                                        <div class="lastName"></div>
+                                        <div class="lastName text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-6">
-                                        {!! Form::label('userName', 'User Name') !!}
+                                        {!! Form::label('username', 'User Name') !!}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-6">
-                                        {!! Form::text('userName', null,
+                                        {!! Form::text('username', null,
                                              array('class' => 'form-control',
-                                                   'placeholder' => 'User Name',
-                                                   'id' => 'userName')) !!}
-                                        <div class="userName"></div>
+                                                   'placeholder' => 'Username',
+                                                   'id' => 'username')) !!}
+                                        <div class="userName text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
@@ -180,7 +180,7 @@
                                              array('class' => 'form-control',
                                                    'placeholder' => 'Github Name',
                                                    'id' => 'gitName')) !!}
-                                        <div class="gitName"></div>
+                                        <div class="gitName text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
@@ -197,7 +197,7 @@
                                                         form-control',
                                                         'placeholder' => 'E-mail',
                                                         'id' => 'email')) !!}
-                                        <div class="email"></div>
+                                        <div class="email text-danger"></div>
                                     </div>
                                 </div><br>
                             </div>
@@ -211,7 +211,7 @@
                                     <div class="col-md-7">
                                         {!! Form::date('dateOfBirth', \Carbon\Carbon::now(),
                                                       array('class' => 'form-control', 'id' => 'dob')) !!}
-                                        <div class="dob"></div>
+                                        <div class="dob text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
@@ -223,7 +223,7 @@
                                     <div class="col-md-7">
                                         {!! Form::select('gender', ['Male' => 'Male', 'Female' => 'Female'], null,
                                                          array('class' => 'form-control', 'id' => 'gender')) !!}
-                                        <div class="gender"></div>
+                                        <div class="gender text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
@@ -237,7 +237,7 @@
                                                                             'Unmarried' => 'Unmarried'], null,
                                                                              array('class' => 'form-control',
                                                                              'id' => 'maritalStatus')) !!}
-                                        <div class="maritalStatus"></div>
+                                        <div class="maritalStatus text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
@@ -251,7 +251,7 @@
                                                       array('class' => 'form-control',
                                                             'placeholder' => 'Employer',
                                                              'id' => 'employer')) !!}
-                                        <div class="employer"></div>
+                                        <div class="employer text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
@@ -265,7 +265,7 @@
                                                         array('class' => 'form-control',
                                                                'placeholder' => 'Employment',
                                                                'id' => 'employment')) !!}
-                                        <div class="employment"></div>
+                                        <div class="employment text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
@@ -281,7 +281,7 @@
                                         {!! Form::label('Sms') !!}
                                         {!! Form::checkbox('tags[]','Phone', array('id'=>'comm'))!!}
                                         {!! Form::label('Phone') !!}
-                                        <div class="comm"></div>
+                                        <div class="comm text-danger"></div>
                                     </div>
                                 </div><br>
 
@@ -296,7 +296,7 @@
                                         {!! Form::label('Mobile') !!}
                                         {!! Form::checkbox('value[]','landline', array('id'=>'contactType'))!!}
                                         {!! Form::label('Landline') !!}
-                                        <div class="contactType"></div>
+                                        <div class="contactType text-danger"></div>
                                     </div>
                                 </div><br>
                             </div>
@@ -321,7 +321,7 @@
                                                                 array('class' => 'form-control',
                                                                       'placeholder' => 'State',
                                                                       'id' => 'residentialState')) !!}
-                                                <div class="residentialState"></div>
+                                                <div class="residentialState text-danger"></div>
                                             </div>
                                         </div><br>
                                         <div class="row">
@@ -335,7 +335,7 @@
                                                                 array('class' => 'form-control',
                                                                       'placeholder' => 'City',
                                                                       'id' => 'residentialCity')) !!}
-                                                <div class="residentialCity"></div>
+                                                <div class="residentialCity text-danger"></div>
                                             </div>
                                         </div><br>
                                         <div class="row">
@@ -349,7 +349,7 @@
                                                                 array('class' => 'form-control',
                                                                       'placeholder' => 'Zip',
                                                                       'id' => 'residentialZip')) !!}
-                                                <div class="residentialZip"></div>
+                                                <div class="residentialZip text-danger"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -366,7 +366,7 @@
                                                                 array('class' => 'form-control',
                                                                        'placeholder' => 'State',
                                                                         'id' => 'officeState')) !!}
-                                                <div class="officeState"></div>
+                                                <div class="officeState text-danger"></div>
                                             </div>
                                         </div><br>
                                         <div class="row">
@@ -380,7 +380,7 @@
                                                                 array('class' => 'form-control',
                                                                        'placeholder' => 'City',
                                                                        'id' => 'officeCity')) !!}
-                                                <div class="officeCity"></div>
+                                                <div class="officeCity text-danger"></div>
                                             </div>
                                         </div><br>
                                         <div class="row">
@@ -394,7 +394,7 @@
                                                                 array('class' => 'form-control',
                                                                        'placeholder' => 'Zip',
                                                                         'id' => 'officeZip')) !!}
-                                                <div class="officeZip"></div>
+                                                <div class="officeZip text-danger"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -412,7 +412,7 @@
                                                         array('class' => 'form-control',
                                                               'placeholder' => 'Contact Number',
                                                               'id' => 'contact')) !!}
-                                        <div class="contact"></div>
+                                        <div class="contact text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">

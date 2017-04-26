@@ -27,7 +27,7 @@ class DashboardInfo
     {
         // Fetch column value from different table
         return Employee::select('employee.PK_ID', 'employee.prefix', 'employee.firstName', 'employee.middleName','employee.photoLocation',
-            'employee.lastName', 'employee.userName', 'employee.email', 'employee.githubUserName',
+            'employee.lastName', 'employee.username', 'employee.email', 'employee.githubUserName',
             'employee.dateOfBirth', 'employee.gender', 'employee.maritalStatus',
             DB::raw('GROUP_CONCAT(address.addressType, ": ", CONCAT_WS(" ", address.zip, city.name, state.stateName)) AS ADDRESS'),
             'company.name AS companyName',

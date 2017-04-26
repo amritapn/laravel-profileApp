@@ -1,17 +1,23 @@
-.prefix, .firstName, .middleName, .lastName, .userName, .dob, .gender, .maritalStatus, .employer,
-.employment, .contact, .residentialZip, .residentialCity, .residentialState, .officeState, .officeCity,
-.officeZip, .gitName {
-             color: #ff0000;
+table.dataTable tr.odd {
+    background-color: #E2E4FF;
 }
-table.dataTable tr.odd { background-color: #E2E4FF; }
-table.dataTable tr.even { background-color: white; }
+
+table.dataTable tr.even {
+    background-color: white;
+}
 
 .thead {
- font-weight: bold;
+    font-weight: bold;
 }
-button
-{
+
+button {
     text-decoration: none;
     margin-right: 4px;
     margin-top: 4px;
+}
+
+.image {
+    width: 51px;
+    height: 51px;
+    border-radius: 50px;
 }

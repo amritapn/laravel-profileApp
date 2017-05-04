@@ -16,8 +16,8 @@ use App\Model\CommunicationType;
 use App\Model\Communication;
 use App\Model\Contacts;
 use Session;
-
 use View;
+
 class DashboardController extends Controller
 {
     /**
@@ -48,11 +48,9 @@ class DashboardController extends Controller
 
     public function logout()
     {
-         if (Session::has('loggedIn')) {
-             Session::flush();
-             return redirect('login');
-         }
+        if (Session::has('loggedIn')) {
+            Session::flush();
+            return redirect('login');
+        }
     }
-
 }
-

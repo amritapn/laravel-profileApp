@@ -24,7 +24,7 @@ class RegisterInfo
      * @return array
      */
 
-    public static function InsertData($value)
+    public static function insertData($value)
     {
         $prefix = $value['prefix'];
         $firstName = $value['firstName'];

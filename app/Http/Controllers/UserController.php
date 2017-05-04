@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -25,18 +26,17 @@ class UserController extends Controller
      * @return Response
      */
 
-    public function view(Request $request){
+    public function view(Request $request)
+    {
         $employeeId = $request->row_id;
-        //var_dump($employeeId);exit;
-       $employee = GetUserInfo::getDetails($employeeId);
-
+        $employee = GetUserInfo::getDetails($employeeId);
         $address = $employee['ADDRESS'];
         $addressValue = explode(",", $address);
         $residential = $addressValue[0];
         $official = $addressValue[1];
         $residentialAddress = explode(":", $residential);
         $residentialAddressType = $residentialAddress[1];
-        $value = explode(" ",  $residentialAddressType);
+        $value = explode(" ", $residentialAddressType);
         $residentialZip = $value[1];
         $residentialCityName = $value[2];
         $residentialStateName = $value[3];
@@ -79,7 +79,8 @@ class UserController extends Controller
      * @return Response
      */
 
-    public function update(StoreBlogPostRequest $request){
+    public function update(StoreBlogPostRequest $request)
+    {
 
         $value = array('PK_ID' =>$request->row_id,
             'prefix' => $request->prefix,
@@ -104,7 +105,6 @@ class UserController extends Controller
             'officeCity' => $request->officeCity,
             'officeZip' => $request->officeZip);
         GetUserInfo::updateData($value);
-
     }
 
     /**
@@ -113,7 +113,8 @@ class UserController extends Controller
      * @return Response
      */
 
-    public static function deleterow(Request $request) {
+    public static function deleterow(Request $request)
+    {
         $empId = $request->row_id;
         return GetUserInfo::deletedata($empId);
 
@@ -125,7 +126,8 @@ class UserController extends Controller
      * @return Response
      */
 
-    public static function gitdata(Request $request) {
+    public static function gitdata(Request $request)
+    {
         $employeeId = $request->empId;
         return GetUserInfo::getUsername($employeeId);
     }

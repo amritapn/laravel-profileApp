@@ -113,7 +113,7 @@ $(function() {
         // in the "action" attribute of the form when valid
 
         submitHandler: function() {
-            if($("#signUp").length <= 0) {
+            if ($("#signUp").length <= 0) {
                 event.preventDefault();
                 var id = $("#hidden").val();
                 update_row(id)

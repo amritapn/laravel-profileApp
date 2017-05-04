@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Controllers\Controller;
@@ -39,14 +40,14 @@ class RegisterController extends Controller
     public function store(StoreValidationError $request)
     {
         $photoLocation = null;
-       $fileName = $request->ProfilePic;
+        $fileName = $request->ProfilePic;
 
-       // Retrieve image File from the registration page
-        if(isset($fileName)) {
+        // Retrieve image File from the registration page
+        if (isset($fileName)) {
             $file = $request->file('ProfilePic');
             $fileName = $file->getClientOriginalName();
             $destinationPath = public_path().'/img/' ;
-            $file->move($destinationPath,$fileName);
+            $file->move($destinationPath, $fileName);
             $photoLocation = $fileName;
         } else {
             $photoLocation = "dummy.svg";
@@ -87,7 +88,7 @@ class RegisterController extends Controller
 
 
         RegisterInfo::insertData($value);
-        Session::flash('success','You have registered successfully!!');
+        Session::flash('success', 'You have registered successfully!!');
         return redirect('show');
 
     }
@@ -98,7 +99,8 @@ class RegisterController extends Controller
      * @return Response
      */
 
-    public function show(){
+    public function show()
+    {
         return view('show');
     }
 }

@@ -26,14 +26,33 @@ class DashboardInfo
     public static function getData()
     {
         // Fetch column value from different table
-        return Employee::select('employee.PK_ID', 'employee.prefix', 'employee.firstName', 'employee.middleName','employee.photoLocation',
-            'employee.lastName', 'employee.username', 'employee.email', 'employee.githubUserName',
-            'employee.dateOfBirth', 'employee.gender', 'employee.maritalStatus',
-            DB::raw('GROUP_CONCAT(address.addressType, ": ", CONCAT_WS(" ", address.zip, city.name, state.stateName)) AS ADDRESS'),
+        return Employee::select(
+            'employee.PK_ID',
+            'employee.prefix',
+            'employee.firstName',
+            'employee.middleName',
+            'employee.photoLocation',
+            'employee.lastName',
+            'employee.username',
+            'employee.email',
+            'employee.githubUserName',
+            'employee.dateOfBirth',
+            'employee.gender',
+            'employee.maritalStatus',
+            DB::raw(
+                'GROUP_CONCAT(address.addressType, ": ", 
+                 CONCAT_WS(" ", address.zip, city.name, state.stateName)) AS ADDRESS'
+            ),
             'company.name AS companyName',
             'designation.name',
-            DB::raw('GROUP_CONCAT(DISTINCT communicationType.communicationType) AS communicationType'),
-            DB::raw('GROUP_CONCAT(DISTINCT contacts.contactType) AS contactType'), 'contacts.contactNO')
+            DB::raw(
+                'GROUP_CONCAT(DISTINCT communicationType.communicationType) AS communicationType'
+            ),
+            DB::raw(
+                'GROUP_CONCAT(DISTINCT contacts.contactType) AS contactType'
+            ),
+            'contacts.contactNO'
+        )
             ->groupBy('employee.PK_ID')
             ->join('address', 'employee.PK_ID', '=', 'address.FK_employeeID')
             ->join('city', 'address.FK_cityId', '=', 'city.PK_ID')

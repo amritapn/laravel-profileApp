@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -23,10 +22,11 @@ class LoginController extends Controller
      * @return response
      */
 
-    public function login() {
+    public function login()
+    {
         if (Session::has('loggedIn')) {
             return redirect('dashboard');
-        }else {
+        } else {
             Log::critical("error");
             return view('login');
         }
@@ -40,11 +40,12 @@ class LoginController extends Controller
      * @return array
      */
 
-    public function loginProcess(Request $request) {
+    public function loginProcess(Request $request)
+    {
 
         if (Session::has('loggedIn')) {
             return view('dashboard');
-        }else {
+        } else {
             $username = $request->username;
             $password = $request->password;
 

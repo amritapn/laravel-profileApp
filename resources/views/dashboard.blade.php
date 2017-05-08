@@ -18,15 +18,14 @@
                 <tr>
                     <td>Image</td>
                     <td>Name</td>
-                    <td>Username</td>
                     <td>Email</td>
                     <td>Gituser Name</td>
-                    <td>Date-Of-Birth</td>
+                    <td>DOB</td>
                     <td>Address</td>
                     <td>Company</td>
                     <td>Designation</td>
                     <td>Communication Type</td>
-                    <td>Contact Details</td>
+                    <td>Contact</td>
                     <td> Action</td>
                 </tr>
                 </thead>
@@ -35,15 +34,14 @@
                         <tr id={{$row->PK_ID}} >
                             <td><img src = "/img/{{$row->photoLocation}}" class="image"></td>
                             <td>{{$row->prefix}}. {{$row->firstName}} {{$row->middleName}} {{$row->lastName}}</td>
-                            <td>{{$row->username}}</td>
                             <td>{{$row->email}}</td>
-                            <td>{{$row->githubUserName}}</td>
+                            <td>{{$row->githubUsername}}</td>
                             <td>{{$row->dateOfBirth}}</td>
                             <td>{{$row->ADDRESS}}</td>
                             <td>{{$row->companyName}}</td>
                             <td>{{$row->name}}</td>
                             <td>{{$row->communicationType}}</td>
-                            <td>{{$row->contactNO}}</td>
+                            <td>{{$row->contactNumber}}</td>
                             <td><button class="edit_button btn btn-success btn-xs" data-toggle="modal"
                                         data-target="#registrationModal" value="{{$row->PK_ID}}">
                                         <i class="fa fa-edit"></i></button>
@@ -89,28 +87,28 @@
                         <div class="row">
                             <div class="container col-md-3">
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::label('prefix', 'Prefix') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::select('prefix', ['Mr' => 'Mr', 'Mrs' => 'Mrs', 'Miss' => 'Miss'],
                                          null, array('class' => 'form-control', 'id' => 'prefix')) !!}
                                         <div class="prefix text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::label('firstName', 'First Name') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::text('firstName',null,
                                          array('class' => 'form-control',
                                                 'placeholder' => 'First Name',
@@ -120,14 +118,14 @@
                                 </div><br>
 
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::label('middleName', 'Middle Name') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::text('middleName', null,
                                          array('class' => 'form-control',
                                                'placeholder' => 'Middle Name',
@@ -136,14 +134,14 @@
                                     </div>
                                 </div><br>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::label('lastName', 'Last Name') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::text('lastName', null,
                                            array('class' => 'form-control',
                                                  'placeholder' => 'Last Name',
@@ -152,14 +150,14 @@
                                     </div>
                                 </div><br>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
-                                        {!! Form::label('username', 'User Name') !!}
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
+                                        {!! Form::label('username', 'Username') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::text('username', null,
                                              array('class' => 'form-control',
                                                    'placeholder' => 'Username',
@@ -168,34 +166,34 @@
                                     </div>
                                 </div><br>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
-                                        {!! Form::label('githubUserName', 'Github User Name') !!}
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
+                                        {!! Form::label('githubUserName', 'Github Username') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::text('githubUserName', null,
                                              array('class' => 'form-control',
-                                                   'placeholder' => 'Github Name',
+                                                   'placeholder' => 'Github Username',
                                                    'id' => 'gitName')) !!}
                                         <div class="gitName text-danger"></div>
                                     </div>
                                 </div><br>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::label('email', 'Email') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
                                         {!! Form::email('email', null,
                                                   array('class' => 'awesome,
                                                         form-control',
-                                                        'placeholder' => 'E-mail',
+                                                        'placeholder' => 'Email',
                                                         'id' => 'email')) !!}
                                         <div class="email text-danger"></div>
                                     </div>
@@ -208,7 +206,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         {!! Form::date('dateOfBirth', \Carbon\Carbon::now(),
                                                       array('class' => 'form-control', 'id' => 'dob')) !!}
                                         <div class="dob text-danger"></div>
@@ -220,7 +218,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         {!! Form::select('gender', ['Male' => 'Male', 'Female' => 'Female'], null,
                                                          array('class' => 'form-control', 'id' => 'gender')) !!}
                                         <div class="gender text-danger"></div>
@@ -232,7 +230,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         {!! Form::select('maritalStatus', ['Married' => 'Married',
                                                                             'Unmarried' => 'Unmarried'], null,
                                                                              array('class' => 'form-control',
@@ -246,7 +244,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         {!! Form::text('companyName', null,
                                                       array('class' => 'form-control',
                                                             'placeholder' => 'Employer',
@@ -260,7 +258,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         {!! Form::text('designationName', null,
                                                         array('class' => 'form-control',
                                                                'placeholder' => 'Employment',
@@ -269,12 +267,12 @@
                                     </div>
                                 </div><br>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         {!! Form::label('communicationType', 'Communication Type') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-9">
                                         {!! Form::checkbox('tags[]','Email', array('id'=>'comm'))!!}
                                         {!! Form::label('Email') !!}
                                         {!! Form::checkbox('tags[]','Sms', array('id'=>'comm'))!!}
@@ -291,7 +289,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         {!! Form::checkbox('value[]','mobile', array('id'=>'contactType'))!!}
                                         {!! Form::label('Mobile') !!}
                                         {!! Form::checkbox('value[]','landline', array('id'=>'contactType'))!!}
@@ -299,15 +297,66 @@
                                         <div class="contactType text-danger"></div>
                                     </div>
                                 </div><br>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        {!! Form::submit('Submit',
+                                                        array('class'=>'btn btn-success btn-block update_btn', '
+                                                                id'=>'submit'))!!}
+                                    </div>
+                                </div>
                             </div>
                             <div class="container col-md-4">
                                 <div class="row">
-
                                     <div class="col-md-6">
                                         {!! Form::label('Address', 'Address') !!}
                                     </div>
                                 </div>
                                 <div class="well col-md-9">
+                                    <div class="col-md-6">
+                                        <h4>Official Address</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {!! Form::label('officeStateName', 'State') !!}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! Form::text('officeStateName', null,
+                                                                array('class' => 'form-control',
+                                                                       'placeholder' => 'State',
+                                                                        'id' => 'officeState')) !!}
+                                                <div class="officeState text-danger"></div>
+                                            </div>
+                                        </div><br>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {!! Form::label('officeCityName', 'City') !!}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! Form::text('officeCityName', null,
+                                                                array('class' => 'form-control',
+                                                                       'placeholder' => 'City',
+                                                                       'id' => 'officeCity')) !!}
+                                                <div class="officeCity text-danger"></div>
+                                            </div>
+                                        </div><br>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {!! Form::label('offieZip', 'Zip') !!}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! Form::text('officeZip', null,
+                                                                array('class' => 'form-control',
+                                                                       'placeholder' => 'Zip',
+                                                                        'id' => 'officeZip')) !!}
+                                                <div class="officeZip text-danger"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <h4>Residential Address</h4>
                                         <div class="row">
@@ -353,51 +402,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <h4>Official Address</h4>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {!! Form::label('officeStateName', 'State') !!}
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                {!! Form::text('officeStateName', null,
-                                                                array('class' => 'form-control',
-                                                                       'placeholder' => 'State',
-                                                                        'id' => 'officeState')) !!}
-                                                <div class="officeState text-danger"></div>
-                                            </div>
-                                        </div><br>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {!! Form::label('officeCityName', 'City') !!}
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                {!! Form::text('officeCityName', null,
-                                                                array('class' => 'form-control',
-                                                                       'placeholder' => 'City',
-                                                                       'id' => 'officeCity')) !!}
-                                                <div class="officeCity text-danger"></div>
-                                            </div>
-                                        </div><br>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {!! Form::label('offieZip', 'Zip') !!}
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                {!! Form::text('officeZip', null,
-                                                                array('class' => 'form-control',
-                                                                       'placeholder' => 'Zip',
-                                                                        'id' => 'officeZip')) !!}
-                                                <div class="officeZip text-danger"></div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"></div>
@@ -413,13 +417,6 @@
                                                               'placeholder' => 'Contact Number',
                                                               'id' => 'contact')) !!}
                                         <div class="contact text-danger"></div>
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        {!! Form::submit('submit',
-                                                        array('class'=>'btn btn-success btn-block update_btn', '
-                                                                id'=>'submit'))!!}
                                     </div>
                                 </div>
                             </div>

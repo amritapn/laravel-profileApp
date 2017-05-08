@@ -32,7 +32,7 @@ class GetUserInfo
                 'employee.lastName',
                 'employee.username',
                 'employee.email',
-                'employee.githubUserName',
+                'employee.githubUsername',
                 'employee.dateOfBirth',
                 'employee.gender',
                 'employee.maritalStatus',
@@ -48,7 +48,7 @@ class GetUserInfo
                 DB::raw(
                     'GROUP_CONCAT(DISTINCT contacts.contactType) AS contactType'
                 ),
-                'contacts.contactNO'
+                'contacts.contactNumber'
             )
                 ->where('employee.PK_ID', $empId)
                 ->join('address', 'employee.PK_ID', '=', 'address.FK_employeeID')
@@ -92,7 +92,7 @@ class GetUserInfo
                     'middleName' => $value['middleName'],
                     'lastName' => $value['lastName'],
                     'username' => $value['username'],
-                    'githubUserName' => $value['gitName'],
+                    'githubUsername' => $value['gitName'],
                     'email' => $value['email'],
                     'dateOfBirth' => $value['dob'],
                     'maritalStatus' => $value['marital'],
@@ -103,15 +103,11 @@ class GetUserInfo
 
         //Updating company table
         Company::where('PK_ID', $companyId)
-            ->update(
-                ['name' => $value['employer']]
-            );
+            ->update(['name' => $value['employer']]);
 
         //Updating Designation table
         Designation::where('PK_ID', $designationId)
-            ->update(
-                ['name' => $value['employment']]
-            );
+            ->update(['name' => $value['employment']]);
 
         //making the communicationType and contatType to String
 
@@ -127,12 +123,7 @@ class GetUserInfo
 
         //Update the contacts table
         Contacts::where('FK_employeeID', $empId)
-            ->update(
-                [
-                    'contactType' => $value['contactType'],
-                    'contactNO' => $value['contact']
-                ]
-            );
+            ->update(['contactType' => $value['contactType'], 'contactNumber' => $value['contact']]);
 
         //Retrieve the employee id from the address field
         $data = Address::select('FK_cityID')
@@ -146,47 +137,27 @@ class GetUserInfo
 
         //Update the address table
         Address::where('FK_employeeID', $empId)
-            ->update(
-                [
-                    'zip' => $value['residenceZip'],
-                    'FK_cityID' => $cityId,
-                    'addressType' => 'residential'
-                ]
-            );
+            ->update(['zip' => $value['residenceZip'], 'FK_cityID' => $cityId, 'addressType' => 'residential']);
 
         //Update to the city table
         City::where('PK_ID', $cityId)
-            ->update(
-                ['name' => $value['residenceCity']]
-            );
+            ->update(['name' => $value['residenceCity']]);
 
         //Update the state table
         State::where('PK_ID', $stateId)
-            ->update(
-                ['stateName' => $value['residenceState']]
-            );
+            ->update(['stateName' => $value['residenceState']]);
 
         //Update the officeaddress table
         Address::where('FK_employeeID', $empId)
-            ->update(
-                [
-                    'zip' => $value['officeZip'],
-                    'FK_cityID' => $cityId,
-                    'addressType' => 'official'
-                ]
-            );
+            ->update(['zip' => $value['officeZip'], 'FK_cityID' => $cityId, 'addressType' => 'official']);
 
         //Update to the officecity table
         City::where('PK_ID', $cityId)
-            ->update(
-                ['name' => $value['officeCity']]
-            );
+            ->update(['name' => $value['officeCity']]);
 
         //Update the officestate table
         State::where('PK_ID', $stateId)
-            ->update(
-                ['stateName' => $value['officeState']]
-            );
+            ->update(['stateName' => $value['officeState']]);
     }
 
     /**

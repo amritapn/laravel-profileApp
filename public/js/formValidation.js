@@ -39,15 +39,6 @@ $(function() {
             },
             companyName: "required",
             designationName: "required",
-            residenceStateName: {
-                alpha:true
-            },
-            residenceCityName: {
-                alpha: true
-            },
-            residenceZip: {
-             minlength:6
-            },
             officeStateName: {
                 required: true,
                 alpha: true
@@ -61,6 +52,7 @@ $(function() {
                 minlength:6
             },
             contactNumber: {
+                required:true,
                 minlength:10
             },
             githubUserName: "required"
@@ -87,9 +79,6 @@ $(function() {
             email: "Please enter a valid email address",
             companyName: "Please enter your company name",
             designationName: "Please enter your designation",
-            residenceCityName: "Please enter only alphabet",
-            residenceStateName: "Please enter only alphabet",
-            residenceZip: "Your zip must be at least 6",
             officeStateName: {
                 required: "This field is required",
                 alpha :"This field contain only alphabet"

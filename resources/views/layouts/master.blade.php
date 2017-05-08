@@ -26,19 +26,6 @@
 	</style>
 </head>
 <body id="app-layout">
-<nav class="navbar navbar-default">
-	<div class="container">
-		<div class="navbar-header">
-
-			<!-- Branding Image -->
-			<a class="navbar-brand" href="{{ url('/') }}">
-				Laravel Training
-			</a>
-		</div>
-
-	</div>
-</nav>
-
 @yield('content')
 
 <!-- JavaScripts -->

@@ -86,7 +86,7 @@ class RegisterInfo
         $emp->dateOfBirth = $dob;
         $emp->gender = $gender;
         $emp->maritalStatus = $marital;
-        $emp->githubUserName = $gitName;
+        $emp->githubUsername = $gitName;
         $emp->photoLocation = $photoLocation;
         $emp->FK_companyID = $companyId;
         $emp->FK_designationID = $designationId;
@@ -179,7 +179,7 @@ class RegisterInfo
         $contacts = new Contacts;
         $contacts->FK_employeeID = $employeeId;
         $contacts->contactType = $contactType;
-        $contacts->contactNo = $contact;
+        $contacts->contactNumber = $contact;
         $contacts->save();
     }
 }

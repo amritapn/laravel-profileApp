@@ -52,7 +52,7 @@ class UserController extends Controller
                     'middleName' => $employee['middleName'],
                     'lastName' => $employee['lastName'],
                     'username' => $employee['username'],
-                    'gitName' => $employee['githubUserName'],
+                    'gitName' => $employee['githubUsername'],
                     'email' => $employee['email'],
                     'dob' => $employee['dateOfBirth'],
                     'marital' => $employee['maritalStatus'],
@@ -61,7 +61,7 @@ class UserController extends Controller
                     'employment' => $employee['name'],
                     'communication' => $employee['communicationType'],
                     'contactType' => $employee['contactType'],
-                    'contact' => $employee['contactNO'],
+                    'contact' => $employee['contactNumber'],
                     'resState' => $residentialStateName,
                     'resCity' => $residentialCityName,
                     'resZip' => $residentialZip,
@@ -81,7 +81,6 @@ class UserController extends Controller
 
     public function update(StoreBlogPostRequest $request)
     {
-
         $value = array('PK_ID' =>$request->row_id,
             'prefix' => $request->prefix,
             'firstName' => $request->firstName,
@@ -105,6 +104,7 @@ class UserController extends Controller
             'officeCity' => $request->officeCity,
             'officeZip' => $request->officeZip);
         GetUserInfo::updateData($value);
+
     }
 
     /**

@@ -90,7 +90,6 @@ class RegisterController extends Controller
         RegisterInfo::insertData($value);
         Session::flash('success', 'You have registered successfully!!');
         return redirect('show');
-
     }
 
     /**

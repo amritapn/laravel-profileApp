@@ -35,12 +35,12 @@ class DashboardInfo
             'employee.lastName',
             'employee.username',
             'employee.email',
-            'employee.githubUserName',
+            'employee.githubUsername',
             'employee.dateOfBirth',
             'employee.gender',
             'employee.maritalStatus',
             DB::raw(
-                'GROUP_CONCAT(address.addressType, ": ", 
+                'GROUP_CONCAT(address.addressType, ": ",
                  CONCAT_WS(" ", address.zip, city.name, state.stateName)) AS ADDRESS'
             ),
             'company.name AS companyName',
@@ -51,7 +51,7 @@ class DashboardInfo
             DB::raw(
                 'GROUP_CONCAT(DISTINCT contacts.contactType) AS contactType'
             ),
-            'contacts.contactNO'
+            'contacts.contactNumber'
         )
             ->groupBy('employee.PK_ID')
             ->join('address', 'employee.PK_ID', '=', 'address.FK_employeeID')

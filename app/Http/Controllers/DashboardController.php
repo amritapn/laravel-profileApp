@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Model\Services\DashboardInfo;
@@ -32,7 +31,7 @@ class DashboardController extends Controller
         if (Session::has('loggedIn')) {
             $data = DashboardInfo::getData();
 
-            //This will return all the retrived data to the database
+            //This will return all the retrieved data to the database
             return View::make('dashboard', compact('data'));
 
         } else {

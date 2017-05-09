@@ -8,5 +8,5 @@ class Communication extends Model
 {
     protected $table = 'communication';
     protected $primaryKey  = 'PK_ID';
-    public $timestamps = false;
+    public $timestamps = true;
 }

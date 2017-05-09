@@ -8,5 +8,5 @@ class Contacts extends Model
 {
     protected $table = 'contacts';
     protected $primaryKey  = 'PK_ID';
-    public $timestamps = false;
+    public $timestamps = true;
 }

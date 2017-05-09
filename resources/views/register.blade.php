@@ -227,7 +227,24 @@
                                              'placeholder' => 'Employment',
                                              'id' => 'employment')) !!}
                     </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-6">
+                        {!! Form::label('communicationType', 'Communication Type') !!}
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-6">
+                        {!! Form::checkbox('tags[]','Email', array('id'=>'comm'))!!}
+                        {!! Form::label('Email') !!}
+                        {!! Form::checkbox('tags[]','Sms', array('id'=>'comm'))!!}
+                        {!! Form::label('Sms') !!}
+                        {!! Form::checkbox('tags[]','Phone', array('id'=>'comm'))!!}
+                        {!! Form::label('Phone') !!}
+                    </div>
+                </div><br>
             </div>
             <div class="container col-md-4">
                 <div class="row">
@@ -365,7 +382,7 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-3">
-    {!! Form::submit('Submit', array('class'=>'btn btn-success btn-block', 'id' => 'signUp'))!!}
+    {!! Form::submit('submit', array('class'=>'btn btn-success btn-block', 'id' => 'signUp'))!!}
  </div>
 </div>
 </div>
@@ -375,7 +392,6 @@
     {!! Html::script("https://code.jquery.com/jquery-1.11.3.js")  !!}
     {{ Html::style("https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css") }}
     {!! Html::script("https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js") !!}
-    {{ Html::script('js/formValidation.js') }}
     {{ Html::style('css/UpdateError.css') }}
     {{ Html::script('js/view.js') }}
   @endsection

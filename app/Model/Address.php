@@ -8,5 +8,5 @@ class Address extends Model
 {
     protected $table = 'address';
     protected $primaryKey  = 'PK_ID';
-    public $timestamps = false;
+    public $timestamps = true;
 }

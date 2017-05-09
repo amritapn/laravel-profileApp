@@ -8,5 +8,5 @@ class State extends Model
 {
     protected $table = 'state';
     protected $primaryKey  = 'PK_ID';
-    public $timestamps = false;
+    public $timestamps = true;
 }

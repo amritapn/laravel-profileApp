@@ -10,7 +10,7 @@ class Employee extends Model
 {
     protected $table = 'employee';
     protected $primaryKey = 'PK_ID';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = array('userName', 'password');
 
 

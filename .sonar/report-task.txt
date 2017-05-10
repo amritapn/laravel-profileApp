@@ -1,5 +1,5 @@
-projectKey=laravelProfileApp
+projectKey=laravel-profileApp
 serverUrl=http://localhost:9000
-dashboardUrl=http://localhost:9000/dashboard/index/laravelProfileApp
-ceTaskId=AVtWzznUW9dK1ui2EJmD
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AVtWzznUW9dK1ui2EJmD
+dashboardUrl=http://localhost:9000/dashboard/index/laravel-profileApp
+ceTaskId=AVvttZp1IDstOJvtoSBh
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVvttZp1IDstOJvtoSBh

@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $("#user_table").DataTable();
     $(".view_button, .edit_button").click(function(){
+        $( '#popup' ).hide();
         var id = $(this).val();
         edit_row(id);
     });
@@ -53,7 +54,7 @@ function edit_row(id){
     });
 }
 function update_row(user_id){
-    //Retrive the checkbox field and convert into an array
+    //Retrieve the checkbox field and convert into an array
     var communicationType = $('input[name="tags[]"]').map(function(){
         return $(this).val();
     }).get();
@@ -96,6 +97,7 @@ function update_row(user_id){
         },
         success: function () {
         },
+
         error: function(response) {
             var message = jQuery.parseJSON(response.responseText);
 

@@ -67,5 +67,5 @@ Route::get('logout', 'DashboardController@logout');
 
 Route::post('getdata', 'UserController@view');
 Route::post('update', 'UserController@update');
-Route::post('delete', 'UserController@deleterow');
-Route::post('gitInfo', 'UserController@gitdata');
+Route::post('delete', 'UserController@deleteRow');
+Route::post('gitInfo', 'UserController@gitData');

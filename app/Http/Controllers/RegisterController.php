@@ -59,7 +59,7 @@ class RegisterController extends Controller
         // Retrieve the contact type
         $contactType = implode(",", $request->get('value'));
 
-        //Make the passwoird Encrypted
+        //Make the password Encrypted
         $pass =  Hash::make($request->password);
         $value = array(
             'prefix' => $request->prefix,
@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'lastName' => $request->lastName,
             'username' => $request->username,
             'password' => $pass,
-            'gitName' => $request->githubUserName,
+            'gitName' => $request->githubUsername,
             'email' => $request->email,
             'dob' => $request->dateOfBirth,
             'marital' => $request->maritalStatus,
@@ -85,7 +85,6 @@ class RegisterController extends Controller
             'officeCity' => $request->officeCityName,
             'officeZip' => $request->officeZip,
             'photoLocation' => $photoLocation);
-
 
         RegisterInfo::insertData($value);
         Session::flash('success', 'You have registered successfully!!');

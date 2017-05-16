@@ -1,60 +1,69 @@
-  .errormsg { color:red;}
+.errormsg {
+    color: red;
+}
 
 body {
-  background: #95a5a6;
-  font-family: 'Helvetica Neue', Arial, Sans-Serif;
-  padding: 10px 100px 100px 100px;
+    background: #95a5a6;
+    font-family: 'Helvetica Neue', Arial, Sans-Serif;
+    padding: 10px 100px 100px 100px;
 }
- .login-wrap {
-  position: relative;
-  margin: 50px auto;
-  background: #ecf0f1;
-  max-width: 700px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 10px #333
+
+.login-wrap {
+    position: relative;
+    margin: 50px auto;
+    background: #ecf0f1;
+    max-width: 700px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #333
 }
- h2 {
-  text-align: center;
-  font-weight: 200;
-  font-size: 2em;
-  margin-top: 15px;
-  color: #34495e;
+
+h2 {
+    text-align: center;
+    font-weight: 200;
+    font-size: 2em;
+    margin-top: 15px;
+    color: #34495e;
 }
- .login-wrap .form {
-  padding-top: 10px;
+
+.login-wrap .form {
+    padding-top: 10px;
 }
- input[type="text"],
- input[type="password"]
-{
-  width: 80%;
-  margin-left: 10%;
-  margin-bottom: 25px;
-  height: 40px;
-  border-radius: 5px;
-  outline: 0;
-  -moz-outline-style: none;
+
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 25px;
+    height: 40px;
+    border-radius: 5px;
+    outline: 0;
+    -moz-outline-style: none;
 }
- .login-wrap .form submit{
-  width: 80%;
-  margin-left: 10%;
-  margin-bottom: 25px;
-  height: 40px;
- /* width : 123px;*/
-  border-radius: 5px;
-  outline: 0;
-  -moz-outline-style: none;
+
+.login-wrap .form submit{
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 25px;
+    height: 40px;
+    /* width : 123px;*/
+    border-radius: 5px;
+    outline: 0;
+    -moz-outline-style: none;
 }
- .login-wrap .form input[type="text"],
- .login-wrap .form input[type="password"] {
-  border: 1px solid #bbb;
-  padding: 0 0 0 10px;
-  font-size: 14px;
+
+.login-wrap .form input[type="text"],
+.login-wrap .form input[type="password"] {
+    border: 1px solid #bbb;
+    padding: 0 0 0 10px;
+    font-size: 14px;
 }
-  input[type="text"]:focus,
-  input[type="password"]:focus {
-  border: 1px solid #3498db;
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border: 1px solid #3498db;
 }
-  button {
+
+button {
   border: none;
   color: white;
   font-size: 18px;
@@ -62,9 +71,11 @@ body {
   cursor: pointer;
   transition: box-shadow .4s ease;
 }
-  button:hover {
-  box-shadow: 1px 1px 5px #555;
+
+button:hover {
+    box-shadow: 1px 1px 5px #555;
 }
-  button:active {
-  box-shadow: 1px 1px 7px #222;
+
+button:active {
+    box-shadow: 1px 1px 7px #222;
 }

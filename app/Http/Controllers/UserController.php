@@ -15,7 +15,7 @@ use App\Model\CommunicationType;
 use App\Model\Communication;
 use App\Model\Contacts;
 use App\Model\Services\GetUserInfo;
-use App\Http\Requests\StoreBlogPostRequest;
+use App\Http\Requests\InputValidation;
 use View;
 
 class UserController extends Controller
@@ -23,7 +23,7 @@ class UserController extends Controller
     /**
      * Show the form to create a new blog post.
      * @param array
-     * @return Response
+     * @return array
      */
 
     public function view(Request $request)
@@ -79,7 +79,7 @@ class UserController extends Controller
      * @return Response
      */
 
-    public function update(StoreBlogPostRequest $request)
+    public function update(InputValidation $request)
     {
         $value = array('PK_ID' =>$request->row_id,
             'prefix' => $request->prefix,
@@ -113,20 +113,19 @@ class UserController extends Controller
      * @return Response
      */
 
-    public static function deleterow(Request $request)
+    public static function deleteRow(Request $request)
     {
         $empId = $request->row_id;
-        return GetUserInfo::deletedata($empId);
-
+        return GetUserInfo::deleteData($empId);
     }
 
     /**
      * retrieve the data  from the gitHub API
-     * @param array
-     * @return Response
+     * @param $employeeId
+     * @return  githubUsername
      */
 
-    public static function gitdata(Request $request)
+    public static function gitData(Request $request)
     {
         $employeeId = $request->empId;
         return GetUserInfo::getUsername($employeeId);

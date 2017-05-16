@@ -36,14 +36,12 @@ class LoginController extends Controller
      * Get offers related to tag or category
      *
      * @param array
-     * @param
      *
      * @return array
      */
 
     public function loginProcess(Request $request)
     {
-
         if (Session::has('loggedIn')) {
             return view('dashboard');
         } else {

@@ -17,8 +17,6 @@ class RegisterInfo
     /**
      * Get offers related to tag or category
      *
-     * @param integer
-     * @param array
      * @param array
      *
      * @return array
@@ -50,136 +48,147 @@ class RegisterInfo
         $officeZip = $value['officeZip'];
         $photoLocation = $value['photoLocation'];
 
-        // Check the company name is present in the company table and insert into company table
-        $company = new Company;
-        $id = Company::where('name', $employer)->pluck('PK_ID');
+        //Added transaction and try catch in the Insert query.
+        DB::beginTransaction();
+        try {
 
-        if (count($id) > 0) {
-            $companyId = $id[0];
-        } else {
-            $company->name = $employer;
-            $company->save();
-            $companyId = $company->PK_ID;
-        }
+            // Check the company name is present in the company table and insert into company table
+            $company = new Company;
+            $id = Company::where('name', $employer)->pluck('PK_ID');
 
-        // Check the designation name is present in the company table and insert into designation table
-        $designation = new Designation;
-        $id = Designation::where('name', $employment)->pluck('PK_ID');
+            if (count($id) > 0) {
+                $companyId = $id[0];
+            } else {
+                $company->name = $employer;
+                $company->save();
+                $companyId = $company->PK_ID;
+            }
 
-        if (count($id) > 0) {
-            $designationId = $id[0];
-        } else {
-            $designation->name = $employment;
-            $designation->save();
-            $designationId = $designation->PK_ID;
-        }
+            // Check the designation name is present in the company table and insert into designation table
+            $designation = new Designation;
+            $id = Designation::where('name', $employment)->pluck('PK_ID');
 
-        //Insert into employee table
-        $emp = new Employee;
-        $emp->prefix = $prefix;
-        $emp->firstName = $firstName;
-        $emp->middleName = $middleName;
-        $emp->lastName = $lastName;
-        $emp->userName = $username;
-        $emp->password = $password;
-        $emp->email = $email;
-        $emp->dateOfBirth = $dob;
-        $emp->gender = $gender;
-        $emp->maritalStatus = $marital;
-        $emp->githubUsername = $gitName;
-        $emp->photoLocation = $photoLocation;
-        $emp->FK_companyID = $companyId;
-        $emp->FK_designationID = $designationId;
-        $emp->save();
-        $employeeId = $emp->PK_ID;
+            if (count($id) > 0) {
+                $designationId = $id[0];
+            } else {
+                $designation->name = $employment;
+                $designation->save();
+                $designationId = $designation->PK_ID;
+            }
 
-        //Insert Residential address
-        $state = new State;
-        $pkId = State::where('stateName', $residenceState)->pluck('PK_ID');
+            //Insert into employee table
+            $emp = new Employee;
+            $emp->prefix = $prefix;
+            $emp->firstName = $firstName;
+            $emp->middleName = $middleName;
+            $emp->lastName = $lastName;
+            $emp->username = $username;
+            $emp->password = $password;
+            $emp->email = $email;
+            $emp->dateOfBirth = $dob;
+            $emp->gender = $gender;
+            $emp->maritalStatus = $marital;
+            $emp->githubUsername = $gitName;
+            $emp->photoLocation = $photoLocation;
+            $emp->FK_companyID = $companyId;
+            $emp->FK_designationID = $designationId;
+            $emp->save();
+            $employeeId = $emp->PK_ID;
 
-        if (count($pkId) > 0) {
-            $stateId = $pkId[0];
-        } else {
-            $state->stateName = $residenceState;
-            $state->save();
-            $stateId = $state->PK_ID;
-        }
+            //Insert Residential address
+            $state = new State;
+            $pkId = State::where('stateName', $residenceState)->pluck('PK_ID');
 
-        $city = new City;
-        $pkId = City::where('FK_stateID', $stateId)->pluck('PK_ID');
+            if (count($pkId) > 0) {
+                $stateId = $pkId[0];
+            } else {
+                $state->stateName = $residenceState;
+                $state->save();
+                $stateId = $state->PK_ID;
+            }
 
-        if (count($pkId) > 0) {
-            $cityId = $pkId[0];
-        } else {
-            $city->name = $residenceCity;
-            $city->FK_stateID = $stateId;
-            $city->save();
-            $cityId = $city->PK_ID;
-        }
+            $city = new City;
+            $pkId = City::where('FK_stateID', $stateId)->pluck('PK_ID');
 
-        //Insert into address table
-        $address = new Address;
-        $address->FK_employeeID = $employeeId;
-        $address->FK_cityID = $cityId;
-        $address->addressType = 'residential';
-        $address->zip = $residenceZip;
-        $address->save();
+            if (count($pkId) > 0) {
+                $cityId = $pkId[0];
+            } else {
+                $city->name = $residenceCity;
+                $city->FK_stateID = $stateId;
+                $city->save();
+                $cityId = $city->PK_ID;
+            }
 
-        //Insert Official address
-        $state = new State;
-        $pkId = State::where('stateName', $officeState)->pluck('PK_ID');
+            //Insert into address table
+            $address = new Address;
+            $address->FK_employeeID = $employeeId;
+            $address->FK_cityID = $cityId;
+            $address->addressType = 'residential';
+            $address->zip = $residenceZip;
+            $address->save();
 
-        if (count($pkId) > 0) {
-            $stateId = $pkId[0];
-        } else {
-            $state->stateName = $officeState;
-            $state->save();
-            $stateId = $state->PK_ID;
-        }
+            //Insert Official address
+            $state = new State;
+            $pkId = State::where('stateName', $officeState)->pluck('PK_ID');
 
-        $city = new City;
-        $pkId = City::where('FK_stateID', $stateId)->pluck('PK_ID');
+            if (count($pkId) > 0) {
+                $stateId = $pkId[0];
+            } else {
+                $state->stateName = $officeState;
+                $state->save();
+                $stateId = $state->PK_ID;
+            }
 
-        if (count($pkId) > 0) {
-            $cityId = $pkId[0];
-        } else {
-            $city->name = $officeCity;
-            $city->FK_stateID = $stateId;
-            $city->save();
-            $cityId = $city->PK_ID;
-        }
+            $city = new City;
+            $pkId = City::where('FK_stateID', $stateId)->pluck('PK_ID');
 
-        //Insert into address table
-        $address = new Address;
-        $address->FK_employeeID = $employeeId;
-        $address->FK_cityID = $cityId;
-        $address->addressType = 'official';
-        $address->zip = $officeZip;
-        $address->save();
+            if (count($pkId) > 0) {
+                $cityId = $pkId[0];
+            } else {
+                $city->name = $officeCity;
+                $city->FK_stateID = $stateId;
+                $city->save();
+                $cityId = $city->PK_ID;
+            }
 
-        //Insert into communicationType table
-        $comm = new CommunicationType;
-        $id = CommunicationType::where('communicationType', $communication)->pluck('PK_ID');
+            //Insert into address table
+            $address = new Address;
+            $address->FK_employeeID = $employeeId;
+            $address->FK_cityID = $cityId;
+            $address->addressType = 'official';
+            $address->zip = $officeZip;
+            $address->save();
 
-        if (count($id) > 0) {
-            $communicationId = $id[0];
-        } else {
-            $comm->communicationType = $communication;
-            $comm->save();
-            $communicationId = $comm->PK_ID;
-        }
+            //Insert into communicationType table
+            $comm = new CommunicationType;
+            $id = CommunicationType::where('communicationType', $communication)->pluck('PK_ID');
 
-        //Insert into communication table
-        $communication = new Communication();
-        $communication->FK_employeeID = $employeeId;
-        $communication->FK_communicationTypeID = $communicationId;
-        $communication->save();
+            if (count($id) > 0) {
+                $communicationId = $id[0];
+            } else {
+                $comm->communicationType = $communication;
+                $comm->save();
+                $communicationId = $comm->PK_ID;
+            }
 
-        //Insert into contacts table
-        $contacts = new Contacts;
-        $contacts->FK_employeeID = $employeeId;
-        $contacts->contactType = $contactType;
-        $contacts->contactNumber = $contact;
-        $contacts->save();
+            //Insert into communication table
+            $communication = new Communication();
+            $communication->FK_employeeID = $employeeId;
+            $communication->FK_communicationTypeID = $communicationId;
+            $communication->save();
+
+            //Insert into contacts table
+            $contacts = new Contacts;
+            $contacts->FK_employeeID = $employeeId;
+            $contacts->contactType = $contactType;
+            $contacts->contactNumber = $contact;
+            $contacts->save();
+
+            DB::commit();
+
+        } catch(EXCEPTION $e) {
+            DB::rollback();
+            throw $e;
+           }
     }
 }

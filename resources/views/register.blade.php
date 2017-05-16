@@ -131,13 +131,13 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-9">
-                        {!! Form::label('githubUserName', 'Github Username') !!}
+                        {!! Form::label('githubUsername', 'Github Username') !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-9">
-                        {!! Form::text('githubUserName', null,
+                        {!! Form::text('githubUsername', null,
                                         array('class' => 'form-control',
                                               'placeholder' => 'Github Username',
                                               'id' => 'gitName')) !!}
@@ -392,10 +392,10 @@
     {!! Html::script("https://code.jquery.com/jquery-1.11.3.js")  !!}
     {{ Html::style("https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css") }}
     {!! Html::script("https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js") !!}
-    {{ Html::style('css/UpdateError.css') }}
+    {{ Html::style('css/updateError.css') }}
     {{ Html::script('js/view.js') }}
   @endsection
 @section('js-css')
 {!! Html::script("https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js") !!}
-{{ Html::style('css/Jserror.css') }}
+{{ Html::style('css/validationError.css') }}
 @endsection

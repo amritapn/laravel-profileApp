@@ -298,7 +298,7 @@
                                     </div>
                                 </div><br>
                                 <div class="row">
-                                    <div class="col-md-9">
+                                    <div class="col-md-9 popup">
                                         {!! Form::submit('Submit',
                                                         array('class'=>'btn btn-success btn-block update_btn', '
                                                                 id'=>'submit'))!!}
@@ -423,6 +423,7 @@
                         </div>
                     </div>
                     {!! Form::close() !!}
+                    <div id="successMessage"></div>
                 </div>
                 <input type ="hidden" id="hidden">
             </div>
@@ -463,13 +464,12 @@
                 </div>
                 <div class="modal-body">
                     <img id="my_image" src="" width="50" height="50"/>
-                    <p id="gitdetails"></p>
+                    <p id="gitDetails"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
@@ -481,8 +481,8 @@
 @endsection
 @section('js-css')
     {!! Html::script("https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js") !!}
-    {{ Html::style('css/Jserror.css') }}
-    {{ Html::style('css/UpdateError.css') }}
+    {{ Html::style('css/validationError.css') }}
+    {{ Html::style('css/updateError.css') }}
     {{ Html::script('js/view.js') }}
     {{ Html::script('js/git.js') }}
 @endsection

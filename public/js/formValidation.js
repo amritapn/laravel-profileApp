@@ -37,8 +37,8 @@ $(function() {
                 required: true,
                 minlength: 5
             },
-            companyName: "required",
-            designationName: "required",
+            companyName: 'required',
+            designationName: 'required',
             officeStateName: {
                 required: true,
                 alpha: true
@@ -55,57 +55,57 @@ $(function() {
                 required:true,
                 minlength:10
             },
-            githubUserName: "required"
+            githubUsername: 'required'
 
         },
         // Specify validation error messages
         messages: {
             firstName: {
-                required: "Please enter your First Name",
-                alpha: "First Name should only alphabet"
+                required: 'Please enter your First Name',
+                alpha: 'First Name should only alphabet'
             },
             lastName: {
-                required: "Please enter your Last Name",
-                alpha: "Last Name should only alphabet"
+                required: 'Please enter your Last Name',
+                alpha: 'Last Name should only alphabet'
              },
             username: {
-                required: "Please enter your Username",
-                alpha: "Last Name should only alphabet"
+                required: 'Please enter your Username',
+                alpha: 'Last Name should only alphabet'
             },
             password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long"
+                required: 'Please provide a password',
+                minlength: 'Your password must be at least 5 characters long'
             },
-            email: "Please enter a valid email address",
-            companyName: "Please enter your company name",
-            designationName: "Please enter your designation",
+            email: 'Please enter a valid email address',
+            companyName: 'Please enter your company name',
+            designationName: 'Please enter your designation',
             officeStateName: {
-                required: "This field is required",
-                alpha :"This field contain only alphabet"
+                required: 'This field is required',
+                alpha :'This field contain only alphabet'
             },
             officeCityName: {
-                required: "This field is required",
-                alpha :"This field contain only alphabet"
+                required: 'This field is required',
+                alpha :'This field contain only alphabet'
             },
             officeZip: {
-                required: "This field is required",
-                minlength :"Your zip must be at least 6"
+                required: 'This field is required',
+                minlength :'Your zip must be at least 6'
             },
             contactNumber: {
-                required: "this field is required",
-                minlength: "Length must be 10"
+                required: 'This field is required',
+                minlength: 'Length must be 10'
             },
-            githubUserName: "This field is required"
+            githubUsername: 'This field is required'
 
         },
         // Make sure the form is submitted to the destination defined
         // in the "action" attribute of the form when valid
 
         submitHandler: function() {
-            if ($("#signUp").length <= 0) {
+            if ($('#signUp').length <= 0) {
                 event.preventDefault();
                 var id = $("#hidden").val();
-                update_row(id)
+                update_row(id);
             }
         }
     });

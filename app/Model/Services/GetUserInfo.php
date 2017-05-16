@@ -17,7 +17,6 @@ class GetUserInfo
     /**
      * Get offers related to tag or category
      *
-     * @param integer
      * @param $empId
      *
      * @return array
@@ -66,7 +65,6 @@ class GetUserInfo
     /**
      * Get offers related to tag or category
      *
-     * @param array of values
      * @param $value
      *
      * @return array
@@ -74,102 +72,110 @@ class GetUserInfo
 
     public static function updateData($value)
     {
-        $empId = $value['PK_ID'];
-        $fkId = Employee::select('FK_companyID', 'FK_designationID')
-            ->where('PK_ID', '=', $empId)
-            ->first();
+        //Added transaction and try catch in the update query
+        DB::beginTransaction();
+        try {
+            $empId = $value['PK_ID'];
+            $fkId = Employee::select('FK_companyID', 'FK_designationID')
+                ->where('PK_ID', '=', $empId)
+                ->first();
 
-        // Retrieving the value
-        $companyId = $fkId['FK_companyID'];
-        $designationId = $fkId['FK_designationID'];
+            // Retrieving the value
+            $companyId = $fkId['FK_companyID'];
+            $designationId = $fkId['FK_designationID'];
 
-        //Updating data to the employee table
-        Employee::where('PK_ID', $empId)
-            ->update(
-                [
-                    'prefix' => $value['prefix'],
-                    'firstName' => $value['firstName'],
-                    'middleName' => $value['middleName'],
-                    'lastName' => $value['lastName'],
-                    'username' => $value['username'],
-                    'githubUsername' => $value['gitName'],
-                    'email' => $value['email'],
-                    'dateOfBirth' => $value['dob'],
-                    'maritalStatus' => $value['marital'],
-                    'gender' => $value['gender']
-                ]
-            );
+            //Updating data to the employee table
+            Employee::where('PK_ID', $empId)
+                ->update(
+                    [
+                        'prefix' => $value['prefix'],
+                        'firstName' => $value['firstName'],
+                        'middleName' => $value['middleName'],
+                        'lastName' => $value['lastName'],
+                        'username' => $value['username'],
+                        'githubUsername' => $value['gitName'],
+                        'email' => $value['email'],
+                        'dateOfBirth' => $value['dob'],
+                        'maritalStatus' => $value['marital'],
+                        'gender' => $value['gender']
+                    ]
+                );
 
 
-        //Updating company table
-        Company::where('PK_ID', $companyId)
-            ->update(['name' => $value['employer']]);
+            //Updating company table
+            Company::where('PK_ID', $companyId)
+                ->update(['name' => $value['employer']]);
 
-        //Updating Designation table
-        Designation::where('PK_ID', $designationId)
-            ->update(['name' => $value['employment']]);
+            //Updating Designation table
+            Designation::where('PK_ID', $designationId)
+                ->update(['name' => $value['employment']]);
 
-        //making the communicationType and contatType to String
+            //making the communicationType and contatType to String
 
-        //Retrieving the communication id
-        $typeId = Communication::select('FK_communicationTypeID')
-            ->where('FK_employeeID', '=', $empId)
-            ->first();
-        $commId = $typeId['FK_communicationTypeID'];
+            //Retrieving the communication id
+            $typeId = Communication::select('FK_communicationTypeID')
+                ->where('FK_employeeID', '=', $empId)
+                ->first();
+            $commId = $typeId['FK_communicationTypeID'];
 
-        //Update the communicationType table
-        CommunicationType::where('PK_ID', $commId)
-            ->update(['communicationType' => $value['communication']]);
+            //Update the communicationType table
+            CommunicationType::where('PK_ID', $commId)
+                ->update(['communicationType' => $value['communication']]);
 
-        //Update the contacts table
-        Contacts::where('FK_employeeID', $empId)
-            ->update(['contactType' => $value['contactType'], 'contactNumber' => $value['contact']]);
+            //Update the contacts table
+            Contacts::where('FK_employeeID', $empId)
+                ->update(['contactType' => $value['contactType'], 'contactNumber' => $value['contact']]);
 
-        //Retrieve the employee id from the address field
-        $data = Address::select('FK_cityID')
-            ->where('FK_employeeID', '=', $empId)
-            ->first();
-        $cityId = $data['FK_cityID'];
-        $val = City::select('FK_stateID')
-            ->where('PK_ID', '=', $cityId)
-            ->first();
-        $stateId = $val['FK_stateID'];
+            //Retrieve the employee id from the address field
+            $data = Address::select('FK_cityID')
+                ->where('FK_employeeID', '=', $empId)
+                ->first();
+            $cityId = $data['FK_cityID'];
+            $val = City::select('FK_stateID')
+                ->where('PK_ID', '=', $cityId)
+                ->first();
+            $stateId = $val['FK_stateID'];
 
-        //Update the address table
-        Address::where('FK_employeeID', $empId)
-            ->update(['zip' => $value['residenceZip'], 'FK_cityID' => $cityId, 'addressType' => 'residential']);
+            //Update the address table
+            Address::where('FK_employeeID', $empId)
+                ->update(['zip' => $value['residenceZip'], 'FK_cityID' => $cityId, 'addressType' => 'residential']);
 
-        //Update to the city table
-        City::where('PK_ID', $cityId)
-            ->update(['name' => $value['residenceCity']]);
+            //Update to the city table
+            City::where('PK_ID', $cityId)
+                ->update(['name' => $value['residenceCity']]);
 
-        //Update the state table
-        State::where('PK_ID', $stateId)
-            ->update(['stateName' => $value['residenceState']]);
+            //Update the state table
+            State::where('PK_ID', $stateId)
+                ->update(['stateName' => $value['residenceState']]);
 
-        //Update the officeaddress table
-        Address::where('FK_employeeID', $empId)
-            ->update(['zip' => $value['officeZip'], 'FK_cityID' => $cityId, 'addressType' => 'official']);
+            //Update the officeaddress table
+            Address::where('FK_employeeID', $empId)
+                ->update(['zip' => $value['officeZip'], 'FK_cityID' => $cityId, 'addressType' => 'official']);
 
-        //Update to the officecity table
-        City::where('PK_ID', $cityId)
-            ->update(['name' => $value['officeCity']]);
+            //Update to the officecity table
+            City::where('PK_ID', $cityId)
+                ->update(['name' => $value['officeCity']]);
 
-        //Update the officestate table
-        State::where('PK_ID', $stateId)
-            ->update(['stateName' => $value['officeState']]);
+            //Update the officestate table
+            State::where('PK_ID', $stateId)
+                ->update(['stateName' => $value['officeState']]);
+            DB::commit();
+
+        }catch(EXCEPTION $e) {
+                DB::rollback();
+                throw $e;
+            }
     }
 
     /**
      * Get offers related to tag or category
      *
-     * @param integer
      * @param $primiaryId
      *
      * @return array
      */
 
-    public static function deletedata($primiaryId)
+    public static function deleteData($primiaryId)
     {
         Employee::destroy($primiaryId);
         return $primiaryId;
@@ -178,7 +184,6 @@ class GetUserInfo
     /**
      * Get offers related to tag or category
      *
-     * @param integer
      * @param $employeeId
      *
      * @return githubUserName

@@ -17,9 +17,7 @@ class DashboardInfo
     /**
      * Get offers related to tag or category
      *
-     * @param integer
-     * @param array
-     * @param array
+     * @param
      *
      * @return array
      */
